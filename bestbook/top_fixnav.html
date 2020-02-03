@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <style>
+
+.page-header {position: absolute;width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);background-color: rgb(255, 255, 255);}
+.page-header.sticky {position: fixed;top: 0;}
+  </style>
+  <script>
+ $(function () {
+   $('.page-header').each(function () {
+        var $window = $(window),
+            $header = $(this),
+            headerOffsetTop = $header.offset().top;
+        $window.on('scroll', function () {
+            if ($window.scrollTop() > headerOffsetTop) {
+                $header.addClass('sticky');
+            } else {
+                $header.removeClass('sticky');
+            }
+        });
+        $window.trigger('scroll');
+    });
+});
+
+
+</script>
+</head>
+
+<body>
+
+<header class="page-header" role="banner">
+    <div class="inner">
+        <h1 class="site-logo"><a href="./"><img src="./img/logo.png" alt="Shiftbrain" height="65" width="200"></a></h1>
+        <nav class="primary-nav" role="navigation">
+            <ul>
+                <li><a href="./">About</a></li>
+                <li><a href="./">Work</a></li>
+                <li><a href="./">Blog</a></li>
+                <li><a href="./">Recruit</a></li>
+                <li><a href="./">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="dummy"></div>
+
+</body></html>

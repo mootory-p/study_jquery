@@ -1,85 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <style>
-			* { margin:0; padding:0; }
-			.box { border:2px solid #1E2327; position:absolute; }
-		</style>
+  <link rel="stylesheet" href="./main.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
   <script>
     $(function() {
-      var maxSize = 30;
-      var body = $('body');
-      var boxInfo = [];
-
-      for (var i = 0; i < maxSize; i++) {
-        var box = '<div class="box">';
-        body.append(box);
-      }
-
-      var box = $('.box');
-      box.each(function(i) {
-        var tg = $(this);
-        var boxColor = '#' + Math.round(Math.random() * 0xFFFFFF).toString(16);
-        var boxHeight = parseInt(Math.random() * 50 + 100);
-        var boxWidth = parseInt(Math.random() * 50 + 50);
-
-        tg.css({
-          width: boxWidth,
-          height: boxHeight,
-          backgroundColor: boxColor
+      var $aside = $('.page-main > aside');
+      var $asidButton = $aside.find('button')
+        .on('click', function() {
+          $aside.toggleClass('open');
+          if ($aside.hasClass('open')) {
+            $aside.stop(true).animate({
+              left: '-70px'
+            }, 300, 'easeOutBack');
+            $asidButton.find('img').attr('src', 'img/btn_close.png');
+          } else {
+            $aside.stop(true).animate({
+              left: '-350px'
+            }, 300, 'easeInBack');
+            $asidButton.find('img').attr('src', 'img/btn_open.png');
+          };
         });
-
-        boxInfo.push([]);
-      });
-
-      $(window).resize(function() {
-        sort();
-      });
-      sort();
-
-      function sort() {
-        var maxHeight = 0;
-        var tt = 0;
-        var ww = $(window).width();
-        box.each(function(i) {
-          var tg = $(this);
-          var tl = 0;
-          var tw = tg.outerWidth();
-          var th = tg.outerHeight();
-
-          if (i > 0) {
-            tl = boxInfo[i - 1][0] + boxInfo[i - 1][1];
-            tlw = tl + tg.outerWidth();
-
-            if (tlw > ww) {
-              tl = 0;
-              tt = maxHeight + boxInfo[i - 1][2];
-              maxHeight = 0;
-            }
-          }
-
-          if (th > maxHeight) maxHeight = th;
-          boxInfo[i][0] = tl;
-          boxInfo[i][1] = tw;
-          boxInfo[i][2] = tt;
-          tg.stop().animate({left: tl,top: tt}, {duration: 400, ease: 'easeOutCubic'});
-        });
-      }
-
     });
-
   </script>
 </head>
 
 <body>
+  <div class="page-main" role="main">
+    <aside>
+      <ul>
+        <li><a href="#"><img src="img/01_aside.png"></a></li>
+        <li><a href="#"><img src="img/02_aside.png"></a></li>
+        <li><a href="#"><img src="img/03_aside.png"></a></li>
+      </ul>
+      <button><img src="img/btn_open.png"></button>
+    </aside>
+  </div>
 
-</body>
 
-</html>
+</body></html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<link rel="stylesheet" href="./css/colorbox.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="./js/vendor/jquery.colorbox-min.js"></script>
+
+
+
+  <style>
+
+  </style>
+
+  <script>
+$(function() {
+
+$('gallery-item a').colorbox({
+    maxWidth: '970px',
+    maxHeight: '95%',
+    title: function () {
+        return $(this).find('.inner').html();
+    }
+});
+
+});
+
+  </script>
+</head>
+
+<body>
+
+<ul>
+  <li class="gallery-item is-loading">
+    <a href="large.jpg">
+      <img src="thumb.jpg">
+      <span class="caption">
+        <span class="inner">
+         <p class="title">제목</p>
+         <time class="date">yyyy-mm-dd</time>
+        </span>
+      </span>
+    </a>
+  </li> 반복
+</ul>
+
+
+</body>
+
+</html>

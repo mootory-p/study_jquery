@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="jquery-ui-1.10.3.custom.min.js"></script>
+  <!-- jquery ui 에서 tabs와 effects core 가 필요 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<style>
+  .work-section .tabs-highlight {position: absolute;width: 120px;background-color: rgb(51, 51, 51);height: 100%;}
+  .work-section .tabs-highlight:after {content: "";position: absolute;
+    width: 37px;height: 19px;bottom: -19px;left: 50%;margin-left: -18px;z-index: 10;
+    background: url(../img/sprites.png) no-repeat 0 0;}
+  </style>
+
+  <script>
+    $(function() {
+
+      $('.work-section').each(function() {
+
+        var $container = $(this),
+          $navItems = $container.find('.tabs-nav li'),
+          $highlight = $container.find('.tabs-highlight');
+
+        $container.tabs({
+          hide: {duration: 250},
+          show: {duration: 125},
+          create: moveHighlight,
+          activate: moveHighlight
+        });
+
+        function moveHighlight(event, ui) {
+          var $newTab = ui.newTab || ui.tab,
+            left = $newTab.position().left;
+          $highlight.animate({left: left}, 500, 'easeOutExpo');
+        }
+      });
+
+    });
+
+  </script>
+</head>
+
+<body>
+
+  <section class="work-section" id="work">
+
+    <header class="section-header">
+        <div class="inner clearfix">
+            <h2>Pick up work</h2>
+            <ul class="tabs-nav">
+                <li><a href="#work01">Work 01</a></li>
+                <li><a href="#work02">Work 02</a></li>
+                <li><a href="#work03">Work 03</a></li>
+                <li><a href="#work04">Work 04</a></li>
+                <li><a href="#work05">Work 05</a></li>
+            </ul>
+            <span class="tabs-highlight"></span>
+        </div>
+    </header>
+
+    <div class="section-body">
+      <section class="tabs-panel" id="work01">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work02">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work03">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work04">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work05">
+        <div class="content">내용</div>
+      </section>
+    </div>
+
+  </section>
+
+</body>
+
+</html>

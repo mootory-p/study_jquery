@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <style>
+    .back-to-top {display: block;}
+    .no-js .back-to-top {display: none;}
+
+  </style>
+
+  <script>
+    $(function() {
+
+      $('.back-to-top').each(function() {
+        var $el = $(scrollableElement('html', 'body'));
+        $(this).on('click', function(event) {
+          event.preventDefault();
+          $el.animate({scrollTop: 0}, 250);
+        });
+      });
+
+      // scrollTop을 사용할 수있는 요소를 감지하는 함수
+      function scrollableElement(elements) {
+        var i, len, el, $el, scrollable;
+        for (i = 0, len = arguments.length; i < len; i++) {
+          el = arguments[i],
+            $el = $(el);
+          if ($el.scrollTop() > 0) {
+            return el;
+          } else {
+            $el.scrollTop(1);
+            scrollable = $el.scrollTop() > 0;
+            $el.scrollTop(0);if (scrollable) {return el;}
+          }
+        }
+        return [];
+      }
+
+    });
+
+  </script>
+</head>
+
+<body>
+
+  <button type="button" class="back-to-top">
+    <span class="label">페이지 위로 가기</span>
+  </button>
+
+</body>
+
+</html>

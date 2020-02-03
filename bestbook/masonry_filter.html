@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="./js/vendor/jquery.ba-throttle-debounce.min.js"></script>
+  <script src="./imagesloaded.pkgd.min.js"></script>
+  <script src="./masonry.pkgd.min.js"></script>
+
+
+
+  <style>
+
+  </style>
+
+  <script>
+$(function() {
+
+  $('#gallery').each(function() {
+    // 1. 준비
+    var $container = $(this),
+      $loadMoreButton = $('#load-more'),
+      $filter = $('#gallery-filter'),
+      addItemCount = 16,
+      addedd = 0,
+      allData = [],
+      filteredData = [];
+    //이미지 사이즈 세팅
+    $container.masonry({
+      columnWidth: 230,
+      gutter: 10,
+      itemSelector: '.gallery-item'
+    });
+
+    // 2. JSON 가져오기
+    $.getJSON('./data/content.json', initGallery);
+
+    // 3. 갤러리 초기화
+    function initGallery(data) {
+
+      allData = data;
+      filteredData = allData;
+      addItems();
+      $loadMoreButton.on('click', addItems);
+      $filter.on('change', 'input[type="radio"]', filterItems);
+    }
+
+    // 4. 항목을 생성하고 문서에 삽입
+    function addItems(filter) {
+
+      var elements = [],
+      slicedData = filteredData.slice(addedd, addedd + addItemCount);
+
+      $.each(slicedData, function(i, item) {
+        var itemHTML =
+          '<li class="gallery-item is-loading">' +
+          '<a href="' + item.images.large + '">' +
+          '<img src="' + item.images.thumb + '" alt="">' +
+          '<span class="caption">' +
+          '<span class="inner">' +
+          '<b class="title">' + item.title + '</b>' +
+          '<time class="date" datatime="' + item.date + '">' +
+          item.date.replace(/-0?/g, '/') +
+          '</time>' +
+          '</span>' +
+          '</span>' +
+          '</a>' +
+          '</li>';
+        elements.push($(itemHTML).get(0));
+      });
+
+      // Masonry 실행
+      $container
+        .append(elements)
+        .imagesLoaded(function() {
+          $(elements).removeClass('is-loading');
+          $container.masonry('appended', elements);
+
+          if (filter) {
+            $container.masonry();
+          }
+        });
+
+      addedd += slicedData.length;
+      if (addedd < filteredData.length) {
+        $loadMoreButton.show();
+      } else {
+        $loadMoreButton.hide();
+      }
+    }
+
+    // 5. 항목 필터링
+    function filterItems() {
+      var key = $(this).val(),
+      masonryItems = $container.masonry('getItemElements');
+      $container.masonry('remove', masonryItems);
+      filteredData = [];
+      addedd = 0;
+
+      if (key === 'all') {
+        filteredData = allData;
+      } else {
+        filteredData = $.grep(allData, function(item) {
+          return item.category === key;
+        });
+      }
+      addItems(true);
+    }
+  });
+
+});
+
+  </script>
+</head>
+
+<body>
+
+<header class="page-header" role="banner">
+  <div class="inner clearfix">
+    <form class="filter-form" id="gallery-filter">
+      <span class="form-item">
+        <input type="radio" name="filter" id="filter-all" value="all" checked>
+        <label for="filter-all">All</label>
+      </span>
+      <span class="form-item">
+        <input type="radio" name="filter" id="filter-people" value="people">
+        <label for="filter-people">People</label>
+      </span>
+      <span class="form-item">
+        <input type="radio" name="filter" id="filter-animals" value="animals">
+        <label for="filter-animals">Animals</label>
+      </span>
+      <span class="form-item">
+        <input type="radio" name="filter" id="filter-nature" value="nature">
+        <label for="filter-nature">Nature</label>
+      </span>
+    </form>
+  </div>
+</header>
+
+<div class="page-main" role="main">
+  <ul class="gallery" id="gallery"></ul>
+  <button class="load-more" id="load-more">Load more</button>
+</div>
+
+
+</body>
+
+</html>

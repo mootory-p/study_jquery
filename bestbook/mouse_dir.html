@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+  <style>
+    .dir li {
+      list-style: none;
+      display: inline-block;
+      width: 250px;
+      height: 200px;
+      margin: 10px;
+      background-color: powderblue;
+    }
+
+    .dir li a {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .caption {
+      background-color: rgba(231, 200, 25, 0.8);
+      color: rgb(255, 255, 255);
+      padding: 10px;
+      text-align: center;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 100%;
+      top: 100%;
+    }
+
+    .caption:before {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  </style>
+
+  <script>
+    $(function() {
+      $('.dir').on('mouseenter mouseleave', 'a', hoverDirection);
+
+      function hoverDirection(event) {
+        var $overlay = $(this).find('.caption'),
+          side = getMouseDirection(event),
+          animateTo,
+          positionIn = {
+            top: '0%',
+            left: '0%'
+          },
+          positionOut = (function() {
+            switch (side) {
+              // case 0: top, case 1: right, case 2: bottom, default: left
+              case 0:
+                return {
+                  top: '-100%', left: '0%'
+                };
+                break; // top
+              case 1:
+                return {
+                  top: '0%', left: '100%'
+                };
+                break; // right
+              case 2:
+                return {
+                  top: '100%', left: '0%'
+                };
+                break; // bottom
+              default:
+                return {
+                  top: '0%', left: '-100%'
+                };
+                break; // left
+            }
+          })();
+        if (event.type === 'mouseenter') {
+
+          animateTo = positionIn;
+          $overlay.css(positionOut);
+        } else {
+          animateTo = positionOut;
+        }
+        $overlay.stop(true).animate(animateTo, 250, 'easeOutExpo');
+      }
+
+      // 마우스 방향을 감지
+      function getMouseDirection(event) {
+        var $el = $(event.currentTarget),
+          offset = $el.offset(),
+          w = $el.outerWidth(),
+          h = $el.outerHeight(),
+          x = (event.pageX - offset.left - w / 2) * ((w > h) ? h / w : 1),
+          y = (event.pageY - offset.top - h / 2) * ((h > w) ? w / h : 1),
+          direction = Math.round((Math.atan2(y, x) * (180 / Math.PI) + 180) / 90 + 3) % 4;
+        return direction;
+      }
+
+    });
+  </script>
+</head>
+
+<body>
+
+  <ul class="dir">
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+    <li><a href="#"><span class="caption">caption</span></a></li>
+  </ul>
+
+
+</body></html>

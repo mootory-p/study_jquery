@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script>
+    $(function() {
+
+      $('#work').each(function() {
+
+        var $tabList = $(this).find('.tabs-nav'),
+          $tabAnchors = $tabList.find('a'),
+          $tabPanels = $(this).find('.tabs-panel');
+
+        $tabList.on('click', 'a', function(event) {
+
+          event.preventDefault();
+          var $this = $(this);
+          if ($this.hasClass('active')) {
+            return;
+          }
+          $tabAnchors.removeClass('active');
+          $this.addClass('active');
+          $tabPanels.hide();
+          $($this.attr('href')).show();
+
+        });
+
+        $tabAnchors.eq(0).trigger('click');
+
+      });
+
+    });
+
+  </script>
+</head>
+
+<body>
+
+  <section class="work-section" id="work">
+
+    <header class="section-header clearfix">
+      <div class="inner">
+        <h2>Pick up work</h2>
+        <ul class="tabs-nav">
+          <li><a href="#work01">Work 01</a></li>
+          <li><a href="#work02">Work 02</a></li>
+          <li><a href="#work03">Work 03</a></li>
+          <li><a href="#work04">Work 04</a></li>
+          <li><a href="#work05">Work 05</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="section-body">
+      <section class="tabs-panel" id="work01">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work02">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work03">
+        <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work04">
+       <div class="content">내용</div>
+      </section>
+      <section class="tabs-panel" id="work05">
+       <div class="content">내용</div>
+      </section>
+    </div>
+
+  </section>
+
+</body>
+
+</html>

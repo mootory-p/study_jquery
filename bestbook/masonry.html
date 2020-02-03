@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="./imagesloaded.pkgd.min.js"></script>
+  <script src="./masonry.pkgd.min.js"></script>
+  <style>
+
+  </style>
+
+  <script>
+    $(function() {
+
+      $('#gallery').each(function() {
+
+        var $container = $(this);
+        //준비
+        $container.masonry({
+          columnWidth: 230,
+          gutter: 10,
+          itemSelector: '.gallery-item'
+        });
+
+        $.getJSON('./data/content.json', function(data) {
+          var elements = [];
+          $.each(data, function(i, item) {
+            var itemHTML =
+              '<li class="gallery-item is-loading">' +
+              '<a href="' + item.images.large + '">' +
+              '<img src="' + item.images.thumb +
+              '" alt="' + item.title + '">' +
+              '</a>' +
+              '</li>';
+            elements.push($(itemHTML).get(0));
+          });
+          $container.append(elements);
+
+          $container.imagesLoaded(function() {
+            $(elements).removeClass('is-loading');
+            $container.masonry('appended', elements);
+          });
+        }); //json
+
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+
+
+    <ul class="gallery" id="gallery"></ul>
+
+
+</body></html>
