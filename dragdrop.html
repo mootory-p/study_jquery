@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+      * { padding:0; margin:0; }
+      body { background:#414141; }
+      #draggable_wrapper { width:400px; height:400px; }
+      #draggable_wrapper > .draggable { width: 92px; height: 92px; z-index: 110; position:absolute; }
+      #gallery_wrapper { position:absolute; left:500px; top:100px; width:310px; height:500px;}
+      #gallery_wrapper > div { width: 92px; height: 92px; margin:1px; solid #000; float:left; opacity: 0.5; }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+ $(document).ready(function(){
+      var count = 0;
+      var piece = $('#draggable_wrapper > div');
+      var gallery = $('#gallery_wrapper > div');
+      var cnt = 0;
+      randomPosition();
+
+      function randomPosition(){
+          piece.each(function(){
+              var tl = Math.random() * 300;
+              var tt = Math.random() * 300;
+              $(this).css({left:tl, top:tt});
+          });
+      }
+
+      piece.draggable({revert:'invalid'});
+
+      gallery.each(function(i){
+         var dropper = $(this);
+         var targetPiece = piece.eq(dropper.index());
+         dropper.droppable({
+            accept:targetPiece,
+            drop:function(){
+                var tg = $(this);
+                var tx = tg.offset().left;
+                var ty = tg.offset().top;
+                targetPiece.animate({left:tx, top:ty},{duration:400, complete:function(){
+                    cnt++;
+                    if(9 == cnt) {
+                          piece.remove();
+                          gallery.css({
+                              opacity:1,
+                              margin:0
+                          });
+
+                          alert('성공~!');
+                    }
+                }});
+            }
+         });
+      });
+    });
+  </script>
+</head>
+<body>
+    <div id="draggable_wrapper">
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle0.jpg" alt="puzzle0" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle1.jpg" alt="puzzle1" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle2.jpg" alt="puzzle2" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle3.jpg" alt="puzzle3" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle4.jpg" alt="puzzle4" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle5.jpg" alt="puzzle5" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle6.jpg" alt="puzzle6" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle7.jpg" alt="puzzle7" /></p>
+        </div>
+        <div class="draggable ui-widget-content">
+          <p><img src="img/puzzle8.jpg" alt="puzzle8" /></p>
+        </div>
+    </div>
+    <div id="gallery_wrapper">
+        <div>
+            <p><img src="img/puzzle0.jpg" alt="puzzle0" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle1.jpg" alt="puzzle1" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle2.jpg" alt="puzzle2" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle3.jpg" alt="puzzle3" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle4.jpg" alt="puzzle4" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle5.jpg" alt="puzzle5" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle6.jpg" alt="puzzle6" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle7.jpg" alt="puzzle7" /></p>
+        </div>
+        <div>
+            <p><img src="img/puzzle8.jpg" alt="puzzle8" /></p>
+      </div>
+    </div>
+</body>
+</html>
