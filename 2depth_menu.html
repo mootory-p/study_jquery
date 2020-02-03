@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script>
+   $(function(){
+      var menu = $('#gnb > li');
+      var wrap = $('#gnbWrap');
+      var menuHeight = menu.find('> a').height();
+
+      menu.on({
+        mouseover:function(){
+            var tg = $(this);
+            menu.removeClass('on');
+            tg.addClass('on');
+            var th = menuHeight + tg.find('> .sGnbArea').height();
+            wrap.stop().animate({height:th});
+        },
+        mouseout:function(){
+            var tg = $(this);
+            tg.removeClass('on');
+            var th = menuHeight;
+            wrap.stop().animate({height:th});
+            }
+        });
+
+    menu.each(function(i){
+            var tg = $(this);
+            var subList = tg.find('> .sGnbArea > ul > li');
+            subList.on({
+                mouseover:function(){
+                    var tg = $(this);
+                    tg.addClass('on');
+                },
+                mouseout:function(){
+                   var tg = $(this);
+                    tg.removeClass('on');
+                }
+           });
+      });
+});
+  </script>
+</head>
+<body>
+  <div id="headWrap">
+		<div id="gnbWrap">
+			<ul id="gnb">
+				<li class="gnb_01"><a href="#">MENU1</a>
+					<div class="sGnbArea">
+						<ul class="sGnb_01">
+							<li class="sGnb_01a"><a href="#">SUB1</a></li>
+							<li class="sGnb_01b"><a href="#">SUB2</a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="gnb_02"><a href="#">MENU2</a>
+					<div class="sGnbArea">
+						<ul class="sGnb_02">
+							<li class="sGnb_02a"><a href="2depth_menu.html">SUB1</a></li>
+							<li class="sGnb_02b"><a href="#">SUB2</a></li>
+							<li class="sGnb_02c"><a href="#">SUB3</a></li>
+							<li class="sGnb_02d"><a href="#">SUB4</a></li>
+							<li class="sGnb_02e"><a href="#">SUB5</a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="gnb_03"><a href="#">MENU3</a>
+					<div class="sGnbArea">
+						<ul class="sGnb_03">
+							<li class="sGnb_03a"><a href="#">SUB1</a></li>
+							<li class="sGnb_03b"><a href="#">SUB2</a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="gnb_04"><a href="#">MENU4</a>
+					<div class="sGnbArea">
+						<ul class="sGnb_04">
+							<li class="sGnb_04a"><a href="#">SUB1</a></li>
+							<li class="sGnb_04b"><a href="#">SUB2</a></li>
+							<li class="sGnb_04c"><a href="#">SUB3</a></li>
+							<li class="sGnb_04d"><a href="#">SUB4</a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="gnb_05"><a href="#">MENU5</a>
+					<div class="sGnbArea">
+						<ul class="sGnb_05">
+							<li class="sGnb_05a"><a href="#">SUB1</a></li>
+							<li class="sGnb_05b"><a href="#">SUB2</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body></html>

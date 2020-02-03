@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script>
+    $(function() { // $(document).ready(function(){ });
+      var visual = $('#brandVisual > ul > li');
+      var button = $('#buttonList > li');
+      var current = 0;
+      var setIntervalId;
+
+      button.on({
+        click: function() {
+          var tg = $(this);
+          var i = tg.index();
+          button.removeClass('on');
+          tg.addClass('on');
+          move(i);
+        }
+      });
+
+      $('#wrap').on({
+        mouseover: function() {
+          clearInterval(setIntervalId);
+        },
+        mouseout: function() {
+          timer();
+        }
+      });
+
+      timer();
+
+      function timer() {
+        setIntervalId = setInterval(function() {
+          var n = current + 1;
+          if (n == visual.size()) {n = 0;}
+          button.eq(n).trigger('click');
+        }, 5000);
+      }
+
+      function move(i) {
+        if (current == i) return;
+        var currentEl = visual.eq(current);
+        var nextEl = visual.eq(i);
+        currentEl.css({left: 0}).stop().animate({left: '-100%'});
+        nextEl.css({left: '100%'}).stop().animate({left: 0});
+        current = i;
+      }
+    });
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <div id="brandVisual">
+      <ul>
+        <li class="visual_0"><a href="#">배너이미지 1</a></li>
+        <li class="visual_1"><a href="#">배너이미지 2</a></li>
+        <li class="visual_2"><a href="#">배너이미지 3</a></li>
+      </ul>
+    </div>
+    <ul id="buttonList">
+      <li class="on"><a href="#">배너1</a></li>
+      <li><a href="#">배너2</a></li>
+      <li><a href="#">배너3</a></li>
+    </ul>
+  </div>
+</body></html>
