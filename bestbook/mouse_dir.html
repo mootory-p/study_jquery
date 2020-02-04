@@ -61,32 +61,16 @@
           positionOut = (function() {
             switch (side) {
               // case 0: top, case 1: right, case 2: bottom, default: left
-              case 0:
-                return {
-                  top: '-100%', left: '0%'
-                };
-                break; // top
-              case 1:
-                return {
-                  top: '0%', left: '100%'
-                };
-                break; // right
-              case 2:
-                return {
-                  top: '100%', left: '0%'
-                };
-                break; // bottom
-              default:
-                return {
-                  top: '0%', left: '-100%'
-                };
-                break; // left
+              case 0:return {top: '-100%', left: '0%'};break; // top
+              case 1:return {top: '0%', left: '100%'};break; // right
+              case 2:return {top: '100%', left: '0%'};break; // bottom
+              default:return {top: '0%', left: '-100%'};break; // left
             }
           })();
         if (event.type === 'mouseenter') {
-
-          animateTo = positionIn;
           $overlay.css(positionOut);
+          animateTo = positionIn;
+
         } else {
           animateTo = positionOut;
         }
