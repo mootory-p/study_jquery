@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<style>
+html, body, .scene {height: 100%;}
+.mask {overflow: hidden;position: absolute;top:0;left:0;width: 100%;height : 100%;}
+.mask#a1 { background-color: palevioletred}
+.mask#a2 { background-color: orange}
+.mask#a3 { background-color: skyblue}
+.mask#a4 { background-color: mediumpurple}
+.mask .line {position: absolute;width: 1px;height: 100%;background-color: rgba(256,256,256,0.6);opacity: 0.8;top: 0;}
+.mask:first-child .line {display: none;}
+</style>
+
+  <script>
+$(function () {
+
+  initScene();
+
+  function initScene() {
+
+    var $container = $('#scene'),
+      $masks = $container.find('.mask'),
+      $lines = $masks.find('.line'),
+      maskLength = $masks.length,
+
+      maskData = [];
+
+    // 자를 왼쪽 좌표를 저장
+    $masks.each(function (i) {
+      maskData[i] = {left: 0};
+    });
+
+    $container.on({
+      mouseenter: function () {
+        resizeMask($(this).index());
+      },
+      mouseleave: function () {
+        resizeMask(-1);
+      }
+    }, '.mask');
+
+    resizeMask(-1); //처음값
+
+    function resizeMask(active) {
+
+      var w = $container.width(),
+        h = $container.height();
+
+      $masks.each(function (i) {
+
+        var $this = $(this),
+          lpoint; // 자를 왼쪽 좌표
+
+        if (active === -1) {
+          lpoint = w / maskLength * i;
+        } else if (active < i) { //마우스 오른쪽편 마스크는
+          lpoint = w * (1 - 0.1 * (maskLength - i));
+        } else {
+          lpoint = w * 0.1 * i;
+        }
+
+        $(maskData[i]).stop(true).animate({
+          leftrec: lpoint
+        }, {
+          duration: 1000,
+          easing: 'easeOutQuart',
+          progress: function () {
+            var now = this.leftrec;
+            $this.css({clip: 'rect(0px ' + w + 'px ' +h + 'px ' + now + 'px)'});
+            $this.find($lines).css({
+              left: now
+            });
+          }
+        });
+      });
+    }
+  }
+
+});
+
+  </script>
+</head>
+
+<body>
+<div class="scene" id="scene">
+  <div class="mask" id="a1"><div class="line"></div></div>
+  <div class="mask" id="a2"><div class="line"></div></div>
+  <div class="mask" id="a3"><div class="line"></div></div>
+  <div class="mask" id="a4"><div class="line"></div></div>
+</div>
+
+
+</body></html>

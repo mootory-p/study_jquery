@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<style>
+.charts {position: relative;margin: 40% auto;width: 600px;height: 600px;}
+.chart {display: block;float: left;position: relative;margin: 20px;width: 240px;height: 240px;}
+.circle-mask-outer,.circle-mask-inner {overflow: hidden;position: absolute;width: 120px;height: 240px;}
+.circle-mask-outer.left {left: 0;}
+.circle-mask-outer.right {right: 0;}
+.circle-mask-outer.left .circle-mask-inner {left: 100%;transform-origin: 0 50%;}
+.circle-mask-outer.right .circle-mask-inner {right: 100%;transform-origin: 100% 50%;}
+.circle-body {border-radius: 50%;position: absolute;width: 240px;height: 240px;}
+.circle-mask-outer.left .circle-body {right: 0;}
+.circle-mask-outer.right .circle-body {left: 0;}
+#water .circle-body {background-color: skyblue;}
+#sunshine .circle-body {background-color: palevioletred;}
+.chart-content {position: absolute;left: 0px;top: 0px;width: 240px;height: 240px;background-color: transparent;border-radius: 50%;text-align: center; border: 1px solid #ccc;}
+.chart-content .text {left: 5px;line-height: 3.5;position: relative;}
+.chart-content .percent-number {font-size: 50px;font-weight: bold;}
+  </style>
+
+  <script>
+$(function() {
+
+  activateScene();
+
+  function activateScene() {
+
+   var $charts = $('.chart');
+    $charts.each(function() {
+      var $chart = $(this),
+        // 마스크저장. 각도 0
+        $circleLeft = $chart.find('.left .circle-mask-inner')
+        .css({transform: 'rotate(0)'}),
+        $circleRight = $chart.find('.right .circle-mask-inner')
+        .css({transform: 'rotate(0)'}),
+
+        $percentNumber = $chart.find('.percent-number'),
+        percentData = $percentNumber.text();
+      $percentNumber.text(0);
+
+      $({percent: 0}).delay(1000).animate(
+        {percent: percentData},
+        {duration: 1500, progress: function() {
+          var now = this.percent,
+            deg = now * 360 / 100,
+            degRight = Math.min(Math.max(deg, 0), 180),
+            degLeft = Math.min(Math.max(deg - 180, 0), 180);
+          $circleRight.css({transform: 'rotate(' + degRight + 'deg)'});
+          $circleLeft.css({transform: 'rotate(' + degLeft + 'deg)'});
+          $percentNumber.text(Math.floor(now));
+        }
+      });
+    });
+  }
+
+});
+  </script>
+</head>
+
+<body>
+<div class="charts">
+
+  <div class="chart" id="water">
+    <div class="circle-mask-outer left">
+      <div class="circle-mask-inner">
+        <div class="circle-body"></div>
+      </div>
+    </div>
+    <div class="circle-mask-outer right">
+      <div class="circle-mask-inner">
+        <div class="circle-body"></div>
+      </div>
+    </div>
+    <div class="chart-content">
+      <p class="text">
+        <span class="percent-number">24</span><span class="percent-symbol">%</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="chart" id="sunshine">
+    <div class="circle-mask-outer left">
+      <div class="circle-mask-inner">
+        <div class="circle-body"></div>
+      </div>
+    </div>
+    <div class="circle-mask-outer right">
+      <div class="circle-mask-inner">
+        <div class="circle-body"></div>
+      </div>
+    </div>
+    <div class="chart-content">
+      <p class="text">
+        <span class="percent-number">79</span><span class="percent-symbol">%</span>
+      </p>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+</body></html>
