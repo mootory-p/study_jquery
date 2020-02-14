@@ -4,10 +4,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>참가신청</title>
+	<style>
+      .box { width: 220px; border: 1px solid #ccc; padding: 20px; margin: 20px auto;}
+      .del { float: right;}
+  </style>
 </head>
 <body>
-	<div id="container">
-    <h1>참가 신청</h1>
+	<div class="box">
     <form action="">
       <input type="text" id="userName" placeholder="이름" required autocomplete="off">
       <button onclick="newRegister();return false;">신청</button>
@@ -32,9 +35,14 @@
     newP.appendChild(delBttn);  //	del 버튼을 p 요소의 자식 요소로
 
     var nameList = document.querySelector("#nameList");
-    nameList.insertBefore(newP, nameList.childNodes[0]);  // p 요소를 #nameList 맨 앞에 추가하기
+
+    if(userName.value){
+        nameList.insertBefore(newP, nameList.childNodes[0]);  // p 요소를 #nameList 맨 앞에 추가하기
       // nameList.appendChild(newP); // p 요소를 #nameList의 자식 요소로 만들기
-    userName.value = "";  // 텍스트 필드 지우기
+        userName.value = "";  // 텍스트 필드 지우기
+       }
+
+
 
     var removeBttns = document.querySelectorAll(".del");
 

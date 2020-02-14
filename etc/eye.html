@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <style>
+ html {background: #0E3741;}
+    .eye {position: absolute;width: 100px;height: 100px;top: 50%;left: 50%;margin: -50px 0 0 -50px;background: #CB4B16;border-radius: 80%;
+
+  }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+</head>
+<body>
+  <div class="eye"></div>
+
+<script>
+
+
+$(function(){
+//var $eye = $('.eye');
+//
+//$eye.animate({left:0,top: 0}, {duration:400, easing:'easeOutCubic'});
+//
+  var $eye = $('.eye');
+
+function moveCircle(e) {
+  var tgx = e.pageX ;
+  var tgy = e.pageY ;
+  var animateTo = {top:tgy, left:tgx}
+  $eye.animate(animateTo, { duration:0.1, easing: 'easeOutExpo'});
+ //$eye.css({left: tgx,top: tgy });
+}
+
+$(window).on('mousemove', moveCircle);
+
+
+
+
+})
+
+
+</script>
+</body>
+</html>

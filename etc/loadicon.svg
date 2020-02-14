@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="90.5px" height="61.5px" viewBox="5.167 13.75 90.5 61.5" enable-background="new 5.167 13.75 90.5 61.5" xml:space="preserve">
+  <style type="text/css">
+    <![CDATA[
+    path {
+      fill: #ffffff;
+    }
+
+    ]]>
+  </style>
+  <path d="M21.935,61.688c0,3.175-2.573,5.747-5.747,5.747l0,0c-3.174,0-5.747-2.572-5.747-5.747v-32.71
+	c0-3.173,2.573-5.747,5.747-5.747l0,0c3.173,0,5.747,2.573,5.747,5.747V61.688L21.935,61.688z">
+    <animateTransform id="asdf" attributeName="transform" arrtibuteType="XML" type="translate" begin="0.1" dur="1s" values="0.8;0,-8;0.8" repeatCount="indefinite" />
+  </path>
+  <path d="M39.174,61.688c0,3.175-2.573,5.747-5.747,5.747l0,0c-3.174,0-5.747-2.572-5.747-5.747v-32.71
+	c0-3.173,2.573-5.747,5.747-5.747l0,0c3.173,0,5.747,2.573,5.747,5.747V61.688L39.174,61.688z">
+    <animateTransform id="asdf" attributeName="transform" arrtibuteType="XML" type="translate" begin="0.2" dur="1s" values="0.8;0,-8;0.8" repeatCount="indefinite" />
+  </path>
+  <path d="M56.414,61.688c0,3.175-2.572,5.747-5.747,5.747l0,0c-3.174,0-5.747-2.572-5.747-5.747v-32.71
+	c0-3.173,2.573-5.747,5.747-5.747l0,0c3.173,0,5.747,2.573,5.747,5.747V61.688L56.414,61.688z">
+    <animateTransform id="asdf" attributeName="transform" arrtibuteType="XML" type="translate" begin="0.3" dur="1s" values="0.8;0,-8;0.8" repeatCount="indefinite" />
+  </path>
+  <path d="M73.653,61.688c0,3.175-2.572,5.747-5.746,5.747l0,0c-3.175,0-5.748-2.572-5.748-5.747v-32.71
+	c0-3.173,2.573-5.747,5.748-5.747l0,0c3.173,0,5.746,2.573,5.746,5.747V61.688L73.653,61.688z">
+    <animateTransform id="asdf" attributeName="transform" arrtibuteType="XML" type="translate" begin="0.4" dur="1s" values="0.8;0,-8;0.8" repeatCount="indefinite" />
+  </path>
+  <path d="M90.894,61.688c0,3.175-2.572,5.747-5.747,5.747l0,0c-3.174,0-5.746-2.572-5.746-5.747v-32.71
+	c0-3.173,2.572-5.747,5.746-5.747l0,0c3.173,0,5.747,2.573,5.747,5.747V61.688z">
+    <animateTransform id="asdf" attributeName="transform" arrtibuteType="XML" type="translate" begin="0.5" dur="1s" values="0.8;0,-8;0.8" repeatCount="indefinite" />
+  </path>
+</svg>
