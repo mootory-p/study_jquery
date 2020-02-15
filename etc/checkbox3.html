@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+body{ background-color: #333; padding: 150px;}
+
+
+
+input.chcheck[type="checkbox"] {position: absolute; clip: rect(0,0,0,0); }input.chcheck[type="checkbox"] + label{ color: #fff; line-height: 20px; font-size: 14px;}
+input.chcheck[type="checkbox"] + label:before {content: '\a0';display: inline-block;width: 20px;height: 20px;margin-right: 10px;border-radius: 3px;background: #ccc;color:#eee; line-height:20px;  text-align:center;}
+input.chcheck[type="checkbox"]:checked + label:before {content: '\2713';background: linear-gradient(45deg, #03a9f4, #0341a5); color:#fff}
+
+  </style>
+</head>
+<body>
+<input type="checkbox" id="aaa" class="chcheck" />
+<label for="aaa">동의합니다!</label>
+
+</body>
+</html>
