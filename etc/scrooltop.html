@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.scrollTo - Test Window MaxY - Compat Mode</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.js"></script>
+<!--	<script type="text/javascript" src="./jquery.scrollTo.min.js"></script>-->
+	<style>
+      #bigbox {height:500px; width:300px; background-color: aliceblue; overflow-y: auto; overflow-x: hidden; border:1px solid powderblue; position: relative}
+      #bigbox div { display: block; border:1px solid powderblue;height: 700px; width: 100%; background-color: darkseagreen;position: relative;}
+      #bigbox .box2 { background-color: lightpink;}
+  </style>
+</head>
+<body>
+
+	<div id="bigbox">
+		<div class="box1"></div>
+		<div class="box2"></div>
+	</div>
+	<script>
+      var box2h = $(".box2").height();
+      var bigboxh = $("#bigbox").height();
+      var mid = box2h - (bigboxh * 0.5);
+      $('#bigbox').scrollTop(mid);
+	</script>
+  </body>
+</html>
