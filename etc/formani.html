@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body {background: linear-gradient(120deg, rgb(3, 96, 175) 0%, rgb(0, 29, 59) 100%);margin: 0;padding: 0;}.wrap { display: flex;justify-content: center;align-items: center;width: 100%;height: 100vh; }.loginbox {width: 300px;}.loginbox p {display: block; position: relative;width: 100%; height: 50px;}
+    input { outline: none; }
+    .loginbox p input{ background-color: transparent;border:0; color: #fff; width: 100%; height: 100%; font-size: 16px; padding:0.5rem 0.2rem; padding-top: 20px; box-sizing: border-box; }
+    .loginbox input+label { position: absolute; left:0%; bottom:0px; width: 100%; height: 100%; pointer-events: none; border-bottom: 1px solid rgba(255,255,255,0.5); overflow: hidden; }
+
+    .loginbox input+label:after {content: ''; position: absolute; left:0; bottom: -1px; height: 100%; width: 100%; border-bottom:2px solid #01d8ff;
+    transform: translateX(-100%); transition: all 0.3s ease;}
+
+    .loginbox input + label span
+    { position: absolute; bottom: 8px; left:0px;  color: rgba(255,255,255,0.5);transition: all 0.3s ease;transform: translateY(0%)}
+
+    .loginbox input:focus + label > span,
+    .loginbox input:valid + label > span
+    { transform: translateY(-150%); font-size: 14px; color: #0dbae3; }
+    .loginbox input:focus + label:after,
+    .loginbox input:valid + label:after
+    { transform: translateX(0%);}
+
+
+/*
+    .loginbox input.inemail:focus + .laeamil > span,
+    .loginbox input.inemail:valid + .laeamil > span
+    { transform: translateY(-150%); font-size: 14px; color: #0dbae3; }
+    .loginbox input.inemail:focus + label.laeamil:after,
+    .loginbox input.inemail:valid + label.laeamil:after
+    { transform: translateX(0%);}
+
+    .loginbox input.inpw:focus + .lapw > span,
+    .loginbox input.inpw:valid + .lapw > span
+    { transform: translateY(-150%); font-size: 14px; color: #0dbae3; }
+    .loginbox input.inpw:focus + label.lapw:after,
+    .loginbox input.inpw:valid + label.lapw:after
+    { transform: translateX(0%);}
+
+*/
+
+
+
+
+  </style>
+</head>
+
+<body>
+ <div class="wrap">
+  <div class="loginbox">
+    <p><input type="text" name="email" class="inemail" required><label for="email" class="laeamil"><span>Email</span></label></p>
+    <p><input type="password" name="pw" class="inpw" required><label for="pw" class="lapw"><span>Password</span></label></p>
+  </div>
+  </div>
+</body></html>

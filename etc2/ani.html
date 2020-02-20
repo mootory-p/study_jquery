@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    header,
+    footer {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 60px;
+    }
+
+    .animation {
+      height: 100vh;
+      background: linear-gradient(90deg, #e5eb9f, #acf4ac);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .paper {
+      height: 50px;
+      position: relative;
+      top: 50%;
+      left: 0%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    Animation
+  </header>
+  <section class="animation">
+    <img src="arr.png" class="paper">
+  </section>
+  <footer>end</footer>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TimelineLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/plugins/BezierPlugin.min.js"></script>
+
+  <script>
+    const flightPath = {
+      curviness: 1.25,
+      autoRotate: true,
+      values: [
+        {x: 100,y: -20},{x: 300,y: 10},{x: 500,y: 100},{x: 750,y: -100},
+        {x: 350,y: -50},{x: 600,y: 100},{x: 800,y: 0},
+        {x: window.innerWidth,y: -150}
+        ]
+    };
+    const tween = new TimelineLite();
+    tween.add(
+      TweenLite.to('.paper', 1, {
+      bezier: flightPath,
+      ease: Power1.easeInOut
+      })
+    );
+    const controller = new ScrollMagic.Controller();
+
+    const scene = new ScrollMagic.Scene({
+      triggerElement: '.animation',
+      duration: 3000,
+      triggerHook:0
+    })
+    .setTween(tween)
+    .addIndicators()
+    .setPin('.animation')
+    .addTo(controller);
+
+  </script>
+
+</body>
+
+</html>
