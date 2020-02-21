@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body { padding: 0; margin: 0; background-color: aquamarine; transition: all 0.3s ease; }
+  body.bg-active{  background-color: pink; }
+    section { height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 120px;}
+  </style>
+</head>
+
+<body>
+<section>a</section>
+<section>b</section>
+
+  <script>
+    function bgChanger() {
+      if (this.scrollY > this.innerHeight / 2) {
+        document.body.classList.add("bg-active");
+      } else {
+        document.body.classList.remove("bg-active");
+      }
+    }
+    window.addEventListener("scroll", bgChanger);
+
+  </script>
+</body>
+
+</html>
